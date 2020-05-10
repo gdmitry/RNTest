@@ -26,7 +26,6 @@ class DetailsFooter extends React.PureComponent<Props> {
           <Text style={styles.authorText}>{author}</Text>
           <Text style={styles.cameraText}>{camera}</Text>
         </View>
-
       <View style={styles.controls}>
         <TouchableOpacity
           style={{ marginRight: 10 }}
