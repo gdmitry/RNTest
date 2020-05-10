@@ -24,20 +24,21 @@ class HomeContainer extends React.Component<Props, State> {
     super(props)
     StatusBar.setBarStyle('light-content')
     Platform.OS === 'android' && StatusBar.setBackgroundColor('#000')
-    this.onRefresh = this.onRefresh.bind(this)
-    this.onLoadNext = this.onLoadNext.bind(this)
   }
 
   componentDidMount () {
     this.onRefresh()
   }
 
-  onRefresh (): void {
+  onRefresh = (): void => {
     this.props.fetchPictures(1)
   }
 
-  onLoadNext (): void {
-    // TODO: implement me
+  onLoadNext = (): void => {
+    const { isLoading, page, fetchPictures } = this.props;
+    if (!isLoading) {
+      fetchPictures(page + 1)
+    }
   }
 
   render () {

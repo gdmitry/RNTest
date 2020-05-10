@@ -3,6 +3,7 @@ import {
   TouchableOpacity,
   Image,
   View,
+  Text
 } from 'react-native'
 import styles from '../styles'
 import imageFiltersImage from './images/ImageFilters.png'
@@ -18,11 +19,17 @@ class DetailsFooter extends React.PureComponent<Props> {
   render () {
     const { shareCallback, applyFilterCallback, pictureDetails } = this.props
     if (!pictureDetails) return null
-    const imageId = pictureDetails.id
+    const { id: imageId, author, camera } = pictureDetails
     return (
       <View style={styles.detailView}>
+        <View>
+          <Text style={styles.authorText}>{author}</Text>
+          <Text style={styles.cameraText}>{camera}</Text>
+        </View>
+
+      <View style={styles.controls}>
         <TouchableOpacity
-          style={{marginRight: 10}}
+          style={{ marginRight: 10 }}
           onPress={() => applyFilterCallback()}
         >
           <Image style={styles.detailViewImage}
@@ -30,13 +37,13 @@ class DetailsFooter extends React.PureComponent<Props> {
             source={imageFiltersImage} />
         </TouchableOpacity>
         <TouchableOpacity
-          style={{alignSelf: 'flex-end'}}
           onPress={() => shareCallback(imageId)}
         >
           <Image style={styles.detailViewImage}
             resizeMode='cover'
             source={shareImage} />
         </TouchableOpacity>
+        </View>
       </View>
     )
   }

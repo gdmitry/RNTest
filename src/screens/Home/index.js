@@ -56,20 +56,24 @@ class HomeView extends React.PureComponent<Props> {
   // TODO: it would be great to see here some loader and non-flickering layout
   render () {
     const { isLoading, page, pictures, onLoadNext, onRefresh } = this.props
-    return <View style={styles.page}>
-      <FlatList
-        removeClippedSubviews
-        refreshing={isLoading}
-        initialNumToRender={20}
-        data={pictures}
-        onRefresh={onRefresh}
-        numColumns={2}
-        renderItem={this._renderPicture}
-        keyExtractor={(item) => keyExtractor(item, page)}
-        onEndReached={onLoadNext}
-        onEndThreshold={2}
-      />
-    </View>
+
+    return (
+      <View style={styles.page}>
+        <FlatList
+          removeClippedSubviews
+          refreshing={isLoading}
+          initialNumToRender={20}
+          data={pictures}
+          onRefresh={onRefresh}
+          numColumns={2}
+          renderItem={this._renderPicture}
+          keyExtractor={(item) => keyExtractor(item, page)}
+          onEndReached={onLoadNext}
+          onEndThreshold={2}
+        />
+        {isLoading && <ActivityIndicator size='large' style={styles.loader} />}
+      </View>
+    );
   }
 }
 

@@ -1,6 +1,11 @@
 import { Dimensions, StyleSheet } from 'react-native'
 const { width } = Dimensions.get('window')
 
+const baseText = {
+  color: '#fff',
+  fontWeight: 'bold'
+}
+
 const styles: any = StyleSheet.create({
   container: {
     backgroundColor: '#000',
@@ -14,8 +19,7 @@ const styles: any = StyleSheet.create({
   },
   imageStyle: {
     flex: 1,
-    width: width * 0.9,
-    height: width * 0.9,
+    width: width * 0.89
   },
   backButton: {
     position: 'absolute',
@@ -24,17 +28,34 @@ const styles: any = StyleSheet.create({
   },
   spinner: {
     position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   detailView: {
     position: 'absolute',
-    bottom: 10,
-    width: 120,
-    right: 10,
+    bottom: 0,
+    paddingTop: 10,
+    width: width * 0.9,
+    left: 20,
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#000'
   },
   detailViewImage: {
     width: 50,
     height: 50,
   },
+  cameraText: {
+    ...baseText
+  },
+  authorText: {
+    ...baseText,
+    fontSize: 20
+  },
+  controls: {
+    flexDirection: 'row',
+  }
 })
 export default styles

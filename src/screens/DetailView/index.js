@@ -3,6 +3,7 @@ import * as React from 'react'
 import {
   View,
   Image,
+  ActivityIndicator,
 } from 'react-native'
 
 import styles from './styles'
@@ -21,20 +22,23 @@ type Props = {
 class DetailView extends React.PureComponent<Props> {
   render () {
     const { imageUrl, isLoading, shareCallback, applyFilterCallback, pictureDetails } = this.props
+
     return (
       <View style={styles.container}>
-        <View style={styles.imageContainer}>
-          <Image
-            source={{uri: imageUrl}}
-            style={styles.imageStyle} />
-        </View>
+        {isLoading ? (
+          <ActivityIndicator size='large' style={styles.spinner} />
+        ) : (
+          <View style={styles.imageContainer}>
+            <Image source={{ uri: imageUrl }} style={styles.imageStyle} />
+          </View>
+        )}
         <DetailsFooter
           pictureDetails={pictureDetails}
           shareCallback={shareCallback}
           applyFilterCallback={applyFilterCallback}
         />
       </View>
-    )
+    );
   }
 }
 

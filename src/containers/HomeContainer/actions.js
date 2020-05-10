@@ -1,4 +1,4 @@
-import { getPictures } from '../../services/500pxAPI'
+import { getPictures } from '../../services/API'
 import type { ActionWithPayload, ActionWithoutPayload } from '../../types/actions'
 
 export const PICTURES_FETCH_REQUESTED = 'PICTURES_FETCH_REQUESTED'
@@ -13,18 +13,31 @@ export function listIsLoading (): ActionWithoutPayload {
 
 export function fetchListSuccess (pictures: Array<Object>, page: number): ActionWithPayload {
   return {
-    // TODO: implement me
+    type: PICTURES_FETCH_SUCCESS,
+    payload: {
+      pictures,
+      page
+    }
   }
 }
 
 export function fetchListFailed (errorMessage: string): ActionWithPayload {
   return {
-    // TODO: implement me
+    type: FETCH_FAILED,
+    payload: {
+      errorMessage
+    }
   }
 }
 
 export function fetchPictures (page: number = 1) {
   return async dispatch => {
-    // TODO: implement me
+    dispatch(listIsLoading())
+    try {
+      const pictures = await getPictures(page)
+      dispatch(fetchListSuccess(pictures, page))
+    } catch(e) {
+      dispatch(fetchListFailed(e))
+    }
   }
 }

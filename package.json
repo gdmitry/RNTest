@@ -34,8 +34,11 @@
     "eslint-plugin-react": "7.7.0",
     "eslint-plugin-react-native": "3.2.1",
     "eslint-plugin-standard": "3.1.0",
+    "fsevents": "^2.1.3",
     "jest": "22.4.3",
-    "react-test-renderer": "16.3.1"
+    "react-test-renderer": "16.3.1",
+    "reactotron-react-native": "^5.0.0",
+    "reactotron-redux": "^3.1.3"
   },
   "jest": {
     "preset": "react-native",
@@ -46,7 +49,9 @@
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
     },
     "setupFiles": [
-      "./config/jest/globalFetch.js"
+      "./config/jest/globalFetch.js",
+      "./config/jest/BlobModule.js",
+      "./config/jest/WebSocket.js"
     ]
   }
 }

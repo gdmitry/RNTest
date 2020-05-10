@@ -19,5 +19,12 @@ const styles: any = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
   },
-})
+  loader: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+});
 export default styles
