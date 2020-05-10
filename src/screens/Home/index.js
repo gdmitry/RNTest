@@ -2,7 +2,6 @@
 import * as React from 'react'
 import {
   FlatList,
-  ActivityIndicator,
   Dimensions,
   StyleSheet,
   View,
@@ -71,7 +70,6 @@ class HomeView extends React.PureComponent<Props> {
           onEndReached={onLoadNext}
           onEndThreshold={2}
         />
-        {isLoading && <ActivityIndicator size='large' style={styles.loader} />}
       </View>
     );
   }
