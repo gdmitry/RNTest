@@ -6,6 +6,7 @@
 import * as React from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
 import { StackNavigator } from 'react-navigation'
+import { gestureHandlerRootHOC } from 'react-native-gesture-handler'
 import { Provider } from 'react-redux'
 
 import configureStore from './store/configureStore'
@@ -14,8 +15,8 @@ import DetailView from './containers/DetailViewContainer/index'
 
 const Navigation = StackNavigator(
   {
-    Home: { screen: Home },
-    DetailView: { screen: DetailView },
+    Home: { screen: gestureHandlerRootHOC(Home) },
+    DetailView: { screen: gestureHandlerRootHOC(DetailView) },
   },
   {
     initialRouteName: 'Home',

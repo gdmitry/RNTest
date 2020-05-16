@@ -26,25 +26,27 @@ class DetailsFooter extends React.PureComponent<Props> {
           <Text style={styles.authorText}>{author}</Text>
           <Text style={styles.cameraText}>{camera}</Text>
         </View>
-      <View style={styles.controls}>
-        <TouchableOpacity
-          style={{ marginRight: 10 }}
-          onPress={() => applyFilterCallback()}
-        >
-          <Image style={styles.detailViewImage}
-            resizeMode='cover'
-            source={imageFiltersImage} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => shareCallback(imageId)}
-        >
-          <Image style={styles.detailViewImage}
-            resizeMode='cover'
-            source={shareImage} />
-        </TouchableOpacity>
+        <View style={styles.controls}>
+          <TouchableOpacity
+            style={{ marginRight: 10 }}
+            onPress={() => applyFilterCallback()}
+          >
+            <Image
+              style={styles.detailViewImage}
+              resizeMode='cover'
+              source={imageFiltersImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => shareCallback(imageId)}>
+            <Image
+              style={styles.detailViewImage}
+              resizeMode='cover'
+              source={shareImage}
+            />
+          </TouchableOpacity>
         </View>
       </View>
-    )
+    );
   }
 }
 
