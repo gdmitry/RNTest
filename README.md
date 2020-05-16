@@ -13,4 +13,4 @@ https://enappd.com/blog/androidx-react-native/83/
 
 Revert AndroidX packages to Support Libraries 
 
-{code} npx jetify -r{code}
+`npx jetify -r`
