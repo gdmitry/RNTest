@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Platform, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 
-import HomeView from '../../screens/Home'
+import HomeView from '../../screens/HomeView'
 import { fetchPictures } from './actions'
 
 export interface Props {

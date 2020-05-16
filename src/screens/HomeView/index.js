@@ -52,7 +52,6 @@ class HomeView extends React.PureComponent<Props> {
     />
   }
 
-  // TODO: it would be great to see here some loader and non-flickering layout
   render () {
     const { isLoading, page, pictures, onLoadNext, onRefresh } = this.props
 
