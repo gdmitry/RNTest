@@ -10,4 +10,7 @@
 1. AndroidX package error: 
 https://github.com/facebook/react-native-fbsdk/issues/600#issuecomment-524674288
 https://enappd.com/blog/androidx-react-native/83/
-Revert AndroidX packages to Support Libraries {npx jetify -r}
+
+Revert AndroidX packages to Support Libraries 
+
+{code} npx jetify -r{code}
