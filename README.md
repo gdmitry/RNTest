@@ -16,3 +16,6 @@ Revert AndroidX packages to Support Libraries
 `npx jetify -r`
 
 2. Don't forget `react-native link react-native-gesture-handler`
+
+3. Clear cache: `npm start -- --reset-cache`
+4. Reinstall dependencies: `rm -rf node_modules && npm install`
