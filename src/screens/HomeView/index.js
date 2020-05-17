@@ -37,7 +37,7 @@ class HomeView extends React.PureComponent<Props> {
   _openPicture (imageId: number): void {
     const { pictures, navigation } = this.props
     navigation.navigate('DetailView', {
-      pictureDetails: pictures.find(pic => pic.id === imageId)
+      pictureDetails: pictures.find(pic => pic.id === imageId),
     })
   }
 
@@ -70,7 +70,7 @@ class HomeView extends React.PureComponent<Props> {
           onEndThreshold={2}
         />
       </View>
-    );
+    )
   }
 }
 

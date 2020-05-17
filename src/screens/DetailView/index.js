@@ -8,9 +8,8 @@ import {
 
 import {
   PinchGestureHandler,
-  PanGestureHandler,
   State,
-} from 'react-native-gesture-handler';
+} from 'react-native-gesture-handler'
 
 import styles from './styles'
 import DetailsFooter from './components/DetailsFooter'
@@ -40,20 +39,20 @@ class DetailView extends React.PureComponent<Props> {
 
   _onPinchHandlerStateChange = (event) => {
     if (event.nativeEvent.oldState === State.ACTIVE) {
-      this._lastScale *= event.nativeEvent.scale;
-      this._baseScale.setValue(this._lastScale);
-      this._pinchScale.setValue(1);
+      this._lastScale *= event.nativeEvent.scale
+      this._baseScale.setValue(this._lastScale)
+      this._pinchScale.setValue(1)
     }
   };
 
-  render() {
+  render () {
     const {
       imageUrl,
       isLoading,
       shareCallback,
       applyFilterCallback,
       pictureDetails,
-    } = this.props;
+    } = this.props
 
     return (
       <View style={styles.container}>
@@ -85,7 +84,7 @@ class DetailView extends React.PureComponent<Props> {
           applyFilterCallback={applyFilterCallback}
         />
       </View>
-    );
+    )
   }
 }
 

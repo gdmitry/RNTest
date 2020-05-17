@@ -18,8 +18,8 @@ export function fetchPictureSuccess (imageId: number, hiResImage: Object): Actio
     type: PICTURE_DETAILS_FETCH_SUCCESS,
     payload: {
       imageId,
-      hiResImage
-    }
+      hiResImage,
+    },
   }
 }
 
@@ -27,8 +27,8 @@ export function fetchPictureFailed (errorMessage: string): ActionWithPayload {
   return {
     type: FETCH_FAILED,
     payload: {
-      errorMessage
-    }
+      errorMessage,
+    },
   }
 }
 
@@ -38,8 +38,8 @@ export function fetchPictureDetails (imageId: number) {
     try {
       const hiResImage = await getPictureDetails(imageId)
       dispatch(fetchPictureSuccess(imageId, hiResImage))
-    } catch(e) {
+    } catch (e) {
       dispatch(fetchPictureFailed(e))
-    }  
+    }
   }
 }

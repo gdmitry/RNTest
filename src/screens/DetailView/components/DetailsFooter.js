@@ -3,7 +3,7 @@ import {
   TouchableOpacity,
   Image,
   View,
-  Text
+  Text,
 } from 'react-native'
 import styles from '../styles'
 import imageFiltersImage from './images/ImageFilters.png'
@@ -11,7 +11,7 @@ import shareImage from './images/ShareThis.png'
 
 type Props = {
   shareCallback: Function,
-  colorSwitchCallback: Function,
+  applyFilterCallback: Function,
   pictureDetails: Object,
 }
 
@@ -46,7 +46,7 @@ class DetailsFooter extends React.PureComponent<Props> {
           </TouchableOpacity>
         </View>
       </View>
-    );
+    )
   }
 }
 

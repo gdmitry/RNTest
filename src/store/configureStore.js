@@ -8,7 +8,7 @@ import rootReducer from './rootReducer'
 
 export default function configureStore (): any {
   const middlewares = [thunk]
-  const enhancers = [];
+  const enhancers = []
 
   if (__DEV__) {
     middlewares.push(createLogger())

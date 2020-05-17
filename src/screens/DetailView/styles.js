@@ -3,7 +3,7 @@ const { width } = Dimensions.get('window')
 
 const baseText = {
   color: '#fff',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
 }
 
 const styles: any = StyleSheet.create({
@@ -18,7 +18,7 @@ const styles: any = StyleSheet.create({
   imageStyle: {
     flex: 1,
     width: width * 0.89,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   backButton: {
     position: 'absolute',
@@ -43,21 +43,21 @@ const styles: any = StyleSheet.create({
     paddingTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#000'
+    backgroundColor: '#000',
   },
   detailViewImage: {
     width: 50,
     height: 50,
   },
   cameraText: {
-    ...baseText
+    ...baseText,
   },
   authorText: {
     ...baseText,
-    fontSize: 20
+    fontSize: 20,
   },
   controls: {
-    flexDirection: 'row'
-  }
+    flexDirection: 'row',
+  },
 })
 export default styles

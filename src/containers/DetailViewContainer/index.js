@@ -4,7 +4,7 @@ import DetailView from '../../screens/DetailView'
 import { connect } from 'react-redux'
 import { fetchPictureDetails } from './actions'
 import { selectHiResImage } from './selectors'
-import { Share } from 'react-native';
+import { Share } from 'react-native'
 
 export interface Props {
   navigation: any,
@@ -42,10 +42,10 @@ class DetailViewContainer extends React.Component<Props, State> {
     const fullDetails = this.props.hiResImage(imageId)
     try {
       await Share.share({
-        message: fullDetails.full_picture
-      });
+        message: fullDetails.full_picture,
+      })
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
     }
   }
 

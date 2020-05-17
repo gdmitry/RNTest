@@ -35,7 +35,7 @@ class HomeContainer extends React.Component<Props, State> {
   }
 
   onLoadNext = (): void => {
-    const { isLoading, page, fetchPictures } = this.props;
+    const { isLoading, page, fetchPictures } = this.props
     if (!isLoading) {
       fetchPictures(page + 1)
     }
