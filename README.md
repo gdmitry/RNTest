@@ -19,3 +19,4 @@ Revert AndroidX packages to Support Libraries
 
 3. Clear cache: `npm start -- --reset-cache`
 4. Reinstall dependencies: `rm -rf node_modules && npm install`
+5. `adb reverse tcp:9090 tcp:9090`
