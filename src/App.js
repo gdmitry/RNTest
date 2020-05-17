@@ -36,7 +36,7 @@ export interface Props {}
 export interface State {
   store: Object,
 }
-export default class Setup extends React.Component<Props, State> {
+export default class App extends React.Component<Props, State> {
   render () {
     return <SafeAreaView style={styles.safeArea}>
       <Provider store={configureStore()}>
