@@ -8,16 +8,16 @@ import rootReducer from './rootReducer'
 
 export default function configureStore (): any {
   const middlewares = [thunk]
+  const enhancers = [];
 
   if (__DEV__) {
-    // middlewares.push(Reactotron.createEnhancer())
-
-    const logger = createLogger()
-    middlewares.push(logger)
+    middlewares.push(createLogger())
+    enhancers.push(Reactotron.createEnhancer())
   }
 
   const enhancer = compose(
-    applyMiddleware(...middlewares)
+    applyMiddleware(...middlewares),
+    ...enhancers
   )
 
   return createStore(rootReducer, enhancer)

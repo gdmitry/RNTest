@@ -13,6 +13,7 @@ Reactotron
   .connect();
 
 Reactotron.clear();
+
 console.tron = (...args) => {
   console.log(...args);
   Reactotron.display({
