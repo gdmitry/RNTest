@@ -34,7 +34,7 @@ function HomeContainer (props: Props) {
       StatusBar.setBarStyle('light-content')
     }
     onRefresh()
-  }, [onRefresh])
+  }, [])
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
