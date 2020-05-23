@@ -46,7 +46,7 @@ function HomeView (props: Props) {
   }
 
   useEffect(() => {
-    prepareStyles() // create styles once to avoid object literals and use RN style optimization
+    prepareStyles()
   }, [])
 
   return (
