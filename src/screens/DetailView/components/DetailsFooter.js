@@ -18,8 +18,8 @@ type Props = {
 
 function DetailsFooter (props: Props) {
   const { shareCallback, applyFilterCallback, pictureDetails } = props
-  if (!pictureDetails) return null
   const { id: imageId, author, camera } = pictureDetails
+  
   return (
     <View style={styles.detailView}>
       <View>

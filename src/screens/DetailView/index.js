@@ -73,11 +73,11 @@ function DetailView (props: Props) {
           </Animated.View>
         </PinchGestureHandler>
       )}
-      <DetailsFooter
+      { pictureDetails && <DetailsFooter
         pictureDetails={pictureDetails}
         shareCallback={shareCallback}
         applyFilterCallback={applyFilterCallback}
-      />
+      />}
     </View>
   )
 }
