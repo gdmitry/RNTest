@@ -1,3 +1,4 @@
+// @flow
 import { PICTURES_FETCH_REQUESTED, FETCH_FAILED, PICTURES_FETCH_SUCCESS } from './actions'
 
 const initialState = {

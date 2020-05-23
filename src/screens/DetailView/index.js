@@ -60,7 +60,6 @@ class DetailView extends React.PureComponent<Props> {
           <ActivityIndicator size='large' style={styles.spinner} />
         ) : (
           <PinchGestureHandler
-            // style={{ }}
             onGestureEvent={this._onPinchGestureEvent}
             onHandlerStateChange={this._onPinchHandlerStateChange}
           >

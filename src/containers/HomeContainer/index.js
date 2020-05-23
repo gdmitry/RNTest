@@ -1,63 +1,46 @@
 // @flow
-import * as React from 'react'
+import React, { useEffect } from 'react'
 import { Platform, StatusBar } from 'react-native'
-import { connect } from 'react-redux'
-
+import { useDispatch, useSelector } from 'react-redux'
 import HomeView from '../../screens/HomeView'
-import { fetchPictures } from './actions'
+import { fetchPictures as fetchPicturesAction } from './actions'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export interface Props {
-  navigation: any,
-  fetchPictures: Function,
-  pictures: Array<Object>,
-  isLoading: boolean,
+  navigation: any
 }
 
-export interface State {}
+function HomeContainer (props: Props) {
+  const page = useSelector(state => state.homeReducer.page)
+  const pictures = useSelector(state => state.homeReducer.pictures)
+  const isLoading = useSelector(state => state.homeReducer.isLoading)
 
-class HomeContainer extends React.Component<Props, State> {
-  static navigationOptions = {
-    header: null,
+  const dispatch = useDispatch()
+  const fetchPictures = page => dispatch(fetchPicturesAction(page))
+  const passProps = { navigation: props.navigation, fetchPictures, pictures, isLoading }
+  const onRefresh = (): void => {
+    fetchPictures(1)
   }
-
-  constructor (props) {
-    super(props)
-    StatusBar.setBarStyle('light-content')
-    Platform.OS === 'android' && StatusBar.setBackgroundColor('#000')
-  }
-
-  componentDidMount () {
-    this.onRefresh()
-  }
-
-  onRefresh = (): void => {
-    this.props.fetchPictures(1)
-  }
-
-  onLoadNext = (): void => {
-    const { isLoading, page, fetchPictures } = this.props
+  const onLoadNext = (): void => {
     if (!isLoading) {
       fetchPictures(page + 1)
     }
   }
 
-  render () {
-    return <HomeView {...this.props}
-      onRefresh={this.onRefresh}
-      onLoadNext={this.onLoadNext} />
-  }
+  useEffect(() => {
+    if (Platform.OS === 'android') {
+      StatusBar.setBackgroundColor('#000')
+    } else {
+      StatusBar.setBarStyle('light-content')
+    }
+    onRefresh()
+  }, [onRefresh])
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <HomeView {...passProps} onRefresh={onRefresh} onLoadNext={onLoadNext} />
+    </SafeAreaView>
+  )
 }
 
-function bindAction (dispatch) {
-  return {
-    fetchPictures: page => dispatch(fetchPictures(page)),
-  }
-}
-
-const mapStateToProps = state => ({
-  pictures: state.homeReducer.pictures,
-  page: state.homeReducer.page,
-  isLoading: state.homeReducer.isLoading,
-})
-
-export default connect(mapStateToProps, bindAction)(HomeContainer)
+export default HomeContainer

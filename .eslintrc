@@ -12,7 +12,8 @@
   "plugins": [
     "babel",
     "react",
-    "react-native"
+    "react-native",
+    "react-hooks"
   ],
   "globals": {
     "fetch": true,
@@ -41,6 +42,8 @@
       "ignoreRefs": true
     }],
     "camelcase": [0, {"properties": "always"}],
-    "no-duplicate-imports": [1, { "includeExports": false }]
+    "no-duplicate-imports": [1, { "includeExports": false }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

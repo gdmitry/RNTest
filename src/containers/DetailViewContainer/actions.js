@@ -1,5 +1,4 @@
 // @flow
-
 import { getPictureDetails } from '../../services/API'
 import { FETCH_FAILED } from '../HomeContainer/actions'
 import type { ActionWithPayload, ActionWithoutPayload } from '../../types/actions'

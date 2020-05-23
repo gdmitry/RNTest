@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react'
 import {
   TouchableOpacity,
@@ -31,18 +32,16 @@ class DetailsFooter extends React.PureComponent<Props> {
             style={{ marginRight: 10 }}
             onPress={() => applyFilterCallback()}
           >
-            <Image
-              style={styles.detailViewImage}
+            <Image style={styles.detailViewImage}
               resizeMode='cover'
-              source={imageFiltersImage}
-            />
+              source={imageFiltersImage} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => shareCallback(imageId)}>
-            <Image
-              style={styles.detailViewImage}
+          <TouchableOpacity
+            onPress={() => shareCallback(imageId)}
+          >
+            <Image style={styles.detailViewImage}
               resizeMode='cover'
-              source={shareImage}
-            />
+              source={shareImage} />
           </TouchableOpacity>
         </View>
       </View>

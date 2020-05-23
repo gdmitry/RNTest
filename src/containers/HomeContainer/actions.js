@@ -1,3 +1,4 @@
+// @flow
 import { getPictures } from '../../services/API'
 import type { ActionWithPayload, ActionWithoutPayload } from '../../types/actions'
 

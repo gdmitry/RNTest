@@ -1,77 +1,70 @@
 // @flow
-import * as React from 'react'
+import React, { useEffect } from 'react'
 import {
   FlatList,
   Dimensions,
   StyleSheet,
   View,
 } from 'react-native'
-
 import ListItem from './components/ListItem'
-
 import styles from './styles'
-import { Props } from '../../containers/HomeContainer/index' // use same Props as Main Container
+import { Props } from '../../containers/HomeContainer' // use same Props as Main Container
 
 const keyExtractor = (item, page) => item.id.toString() + page
 
-class HomeView extends React.PureComponent<Props> {
-  imageThumbnailStylePortrait = null
+let imageThumbnailStylePortrait = null
 
-  constructor (props) {
-    super(props)
-    this._prepareStyles() // create styles once to avoid object literals and use RN style optimization
-    this._renderPicture = this._renderPicture.bind(this)
-    this._openPicture = this._openPicture.bind(this)
-  }
+function HomeView (props: Props) {
+  const { isLoading, page, pictures, onLoadNext, onRefresh, navigation } = props
 
-  _prepareStyles (): void {
+  const prepareStyles = (): void => {
     const { height, width } = Dimensions.get('window')
     const realWidth = height > width ? width : height
     const portraitImageSize = realWidth / 2 - 10
-    this.imageThumbnailStylePortrait = StyleSheet.flatten({
+    imageThumbnailStylePortrait = StyleSheet.flatten({
       width: portraitImageSize,
       height: portraitImageSize,
     })
   }
 
-  _openPicture (imageId: number): void {
-    const { pictures, navigation } = this.props
+  const openPicture = (imageId: number): void => {
     navigation.navigate('DetailView', {
       pictureDetails: pictures.find(pic => pic.id === imageId),
     })
   }
 
-  _renderPicture (picture) {
-    const imageURL = picture.item.cropped_picture
-    const imageId = picture.item.id
+  const renderPicture = (item) => {
+    const imageURL = item.cropped_picture
+    const imageId = item.id
+
     return <ListItem
       imageUrl={imageURL}
       imageId={imageId}
-      imageStyle={this.imageThumbnailStylePortrait}
-      openPicture={this._openPicture}
+      imageStyle={imageThumbnailStylePortrait}
+      openPicture={openPicture}
     />
   }
 
-  render () {
-    const { isLoading, page, pictures, onLoadNext, onRefresh } = this.props
+  useEffect(() => {
+    prepareStyles() // create styles once to avoid object literals and use RN style optimization
+  }, [])
 
-    return (
-      <View style={styles.page}>
-        <FlatList
-          removeClippedSubviews
-          refreshing={isLoading}
-          initialNumToRender={20}
-          data={pictures}
-          onRefresh={onRefresh}
-          numColumns={2}
-          renderItem={this._renderPicture}
-          keyExtractor={(item) => keyExtractor(item, page)}
-          onEndReached={onLoadNext}
-          onEndThreshold={2}
-        />
-      </View>
-    )
-  }
+  return (
+    <View style={styles.page}>
+      <FlatList
+        removeClippedSubviews
+        refreshing={isLoading}
+        initialNumToRender={20}
+        data={pictures}
+        onRefresh={onRefresh}
+        numColumns={2}
+        renderItem={({ item }) => renderPicture(item)}
+        keyExtractor={(item) => keyExtractor(item, page)}
+        onEndReached={onLoadNext}
+        onEndThreshold={2}
+      />
+    </View>
+  )
 }
 
 export default HomeView

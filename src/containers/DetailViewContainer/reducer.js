@@ -1,3 +1,4 @@
+// @flow
 import { PICTURE_DETAILS_FETCH_REQUESTED, PICTURE_DETAILS_FETCH_SUCCESS } from './actions'
 import { FETCH_FAILED } from '../HomeContainer/actions'
 

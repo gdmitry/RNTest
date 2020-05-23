@@ -1,4 +1,5 @@
-import * as React from 'react'
+// @flow
+import React, { useMemo } from 'react'
 import {
   TouchableOpacity,
   Image,
@@ -12,19 +13,18 @@ type Props = {
   imageStyle: Object,
 }
 
-class ListItem extends React.PureComponent<Props> {
-  render () {
-    const { imageUrl, imageId, openPicture, imageStyle } = this.props
-    return (
-      <TouchableOpacity
-        onPress={() => openPicture(imageId)}
-        style={styles.item}>
-        <Image style={imageStyle}
-          resizeMode='cover'
-          source={{uri: imageUrl}} />
-      </TouchableOpacity>
-    )
-  }
+function ListItem (props: Props) {
+  const { imageUrl, imageId, openPicture, imageStyle } = props
+
+  return (
+    <TouchableOpacity
+      onPress={() => openPicture(imageId)}
+      style={styles.item}>
+      <Image style={imageStyle}
+        resizeMode='cover'
+        source={{uri: imageUrl}} />
+    </TouchableOpacity>
+  )
 }
 
 export default ListItem
