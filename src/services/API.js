@@ -1,25 +1,26 @@
-import fetch from 'node-fetch';
+// @flow
+import fetch from 'node-fetch'
 
-const API_KEY = '23567b218376f79d9415'; // other valid API keys: '760b5fb497225856222a', '0e2a751704a65685eefc'
-const API_ENDPOINT = 'http://195.39.233.28:8035';
+const API_KEY = '23567b218376f79d9415' // other valid API keys: '760b5fb497225856222a', '0e2a751704a65685eefc'
+const API_ENDPOINT = 'http://195.39.233.28:8035'
 
-let token = '';
+let token = ''
 
-export async function getPictures(page: number = 1): Array<Object> {
-  const data = await request(`${API_ENDPOINT}/images?page=${page}`);
+export async function getPictures (page: number = 1): Array<Object> {
+  const data = await request(`${API_ENDPOINT}/images?page=${page}`)
 
-  return data.pictures;
+  return data.pictures
 }
 
-export async function getPictureDetails(id: number): Object {
-  const data = await request(`${API_ENDPOINT}/images/${id}`);
+export async function getPictureDetails (id: number): Object {
+  const data = await request(`${API_ENDPOINT}/images/${id}`)
 
-  return data;
+  return data
 }
 
-export async function request(url: string, options: Object = {}): Object {
+export async function request (url: string, options: Object = {}): Object {
   if (!token) {
-    token = await getToken();
+    token = await getToken()
   }
 
   const params = {
@@ -28,25 +29,25 @@ export async function request(url: string, options: Object = {}): Object {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-  };
-  const result = await fetch(url, params);
-  const body = await result.json();
+  }
+  const result = await fetch(url, params)
+  const body = await result.json()
 
   if (body.status === 'Unauthorized') {
-    token = '';
-    return request(url, params);
+    token = ''
+    return request(url, params)
   }
 
-  return body;
+  return body
 }
 
-export async function getToken(): string {
+export async function getToken (): string {
   const result = await fetch(`${API_ENDPOINT}/auth`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ apiKey: API_KEY }),
-  });
-  const body = await result.json();
+  })
+  const body = await result.json()
 
-  return body.token;
+  return body.token
 }

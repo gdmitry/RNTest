@@ -1,3 +1,4 @@
+// @flow
 import { getPictures } from '../../services/API'
 import type { ActionWithPayload, ActionWithoutPayload } from '../../types/actions'
 
@@ -16,8 +17,8 @@ export function fetchListSuccess (pictures: Array<Object>, page: number): Action
     type: PICTURES_FETCH_SUCCESS,
     payload: {
       pictures,
-      page
-    }
+      page,
+    },
   }
 }
 
@@ -25,8 +26,8 @@ export function fetchListFailed (errorMessage: string): ActionWithPayload {
   return {
     type: FETCH_FAILED,
     payload: {
-      errorMessage
-    }
+      errorMessage,
+    },
   }
 }
 
@@ -36,7 +37,7 @@ export function fetchPictures (page: number = 1) {
     try {
       const pictures = await getPictures(page)
       dispatch(fetchListSuccess(pictures, page))
-    } catch(e) {
+    } catch (e) {
       dispatch(fetchListFailed(e))
     }
   }

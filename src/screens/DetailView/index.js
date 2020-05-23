@@ -2,12 +2,19 @@
 import * as React from 'react'
 import {
   View,
-  Image,
   ActivityIndicator,
+  Animated,
 } from 'react-native'
+
+import {
+  PinchGestureHandler,
+  State,
+} from 'react-native-gesture-handler'
 
 import styles from './styles'
 import DetailsFooter from './components/DetailsFooter'
+
+const USENATIVEDRIVER = true
 
 type Props = {
   imageUrl: string,
@@ -16,30 +23,63 @@ type Props = {
   applyFilterCallback: Function,
   pictureDetails: Object,
 }
+let lastScale = 1
 
-// TODO: it would be great to see here loader, pinch to zoom here and pan
+function DetailView (props: Props) {
+  const baseScale = new Animated.Value(1)
+  const pinchScale = new Animated.Value(1)
+  const scale = Animated.multiply(baseScale, pinchScale)
+  const {
+    imageUrl,
+    isLoading,
+    shareCallback,
+    applyFilterCallback,
+    pictureDetails,
+  } = props
 
-class DetailView extends React.PureComponent<Props> {
-  render () {
-    const { imageUrl, isLoading, shareCallback, applyFilterCallback, pictureDetails } = this.props
+  onPinchGestureEvent = Animated.event(
+    [{ nativeEvent: { scale: this.pinchScale } }],
+    { useNativeDriver: USENATIVEDRIVER }
+  )
 
-    return (
-      <View style={styles.container}>
-        {isLoading ? (
-          <ActivityIndicator size='large' style={styles.spinner} />
-        ) : (
-          <View style={styles.imageContainer}>
-            <Image source={{ uri: imageUrl }} style={styles.imageStyle} resizeMode='contain' />
-          </View>
-        )}
-        <DetailsFooter
-          pictureDetails={pictureDetails}
-          shareCallback={shareCallback}
-          applyFilterCallback={applyFilterCallback}
-        />
-      </View>
-    );
+  onPinchHandlerStateChange = (event) => {
+    if (event.nativeEvent.oldState === State.ACTIVE) {
+      lastScale *= event.nativeEvent.scale
+      baseScale.setValue(lastScale)
+      pinchScale.setValue(1)
+    }
   }
+
+  return (
+    <View style={styles.container}>
+      {isLoading ? (
+        <ActivityIndicator size='large' style={styles.spinner} />
+      ) : (
+        <PinchGestureHandler
+          onGestureEvent={this.onPinchGestureEvent}
+          onHandlerStateChange={this.onPinchHandlerStateChange}
+        >
+          <Animated.View style={styles.wrapper}>
+            <Animated.Image
+              style={[
+                styles.imageStyle,
+                {
+                  transform: [{ perspective: 200 }, { scale }],
+                },
+              ]}
+              source={{ uri: imageUrl }}
+              resizeMode='contain'
+            />
+          </Animated.View>
+        </PinchGestureHandler>
+      )}
+      { pictureDetails && <DetailsFooter
+        pictureDetails={pictureDetails}
+        shareCallback={shareCallback}
+        applyFilterCallback={applyFilterCallback}
+      />}
+    </View>
+  )
 }
 
 export default DetailView

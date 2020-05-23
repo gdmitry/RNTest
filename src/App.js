@@ -1,46 +1,54 @@
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
- * @flow
  */
+import 'react-native-gesture-handler'
 import * as React from 'react'
-import { SafeAreaView, StyleSheet } from 'react-native'
-import { StackNavigator } from 'react-navigation'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 import { Provider } from 'react-redux'
 
 import configureStore from './store/configureStore'
-import Home from './containers/HomeContainer/index'
-import DetailView from './containers/DetailViewContainer/index'
+import HomeView from './containers/HomeContainer'
+import DetailView from './containers/DetailViewContainer'
 
-const Navigation = StackNavigator(
-  {
-    Home: { screen: Home },
-    DetailView: { screen: DetailView },
-  },
-  {
-    initialRouteName: 'Home',
-    headerMode: 'screen',
-  }
-)
+const Stack = createStackNavigator()
 
-// iPhone X safe area (top and bottom color)
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#000',
-  },
-})
-
-export interface Props {}
-export interface State {
-  store: Object,
-}
-export default class Setup extends React.Component<Props, State> {
-  render () {
-    return <SafeAreaView style={styles.safeArea}>
-      <Provider store={configureStore()}>
-        <Navigation />
-      </Provider>
-    </SafeAreaView>
-  }
+export default function App () {
+  return (
+    <Provider store={configureStore()}>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName='HomeView'
+            headerMode='screen'
+            screenOptions={{
+              headerTintColor: '#FFF',
+            }}
+          >
+            <Stack.Screen
+              name='HomeView'
+              component={HomeView}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name='DetailView'
+              component={DetailView}
+              options={{
+                headerTransparent: true,
+                headerStyle: {
+                  height: 50,
+                  borderBottomWidth: 0,
+                },
+                headerTintColor: '#FFF',
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </Provider>
+  )
 }
