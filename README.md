@@ -13,7 +13,7 @@ https://enappd.com/blog/androidx-react-native/83/
 
 Revert AndroidX packages to Support Libraries 
 
-`npx jetify -r`
+  `npx jetify -r`
 
 2. Don't forget `react-native link react-native-gesture-handler`
 
