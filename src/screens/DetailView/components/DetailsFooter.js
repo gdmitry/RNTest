@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import {
   TouchableOpacity,
@@ -19,7 +18,7 @@ type Props = {
 function DetailsFooter (props: Props) {
   const { shareCallback, applyFilterCallback, pictureDetails } = props
   const { id: imageId, author, camera } = pictureDetails
-  
+
   return (
     <View style={styles.detailView}>
       <View>

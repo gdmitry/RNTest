@@ -1,4 +1,3 @@
-// @flow
 export type ActionWithPayload = {
   type: string,
   payload: Object,

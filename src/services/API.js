@@ -1,4 +1,3 @@
-// @flow
 import fetch from 'node-fetch'
 
 const API_KEY = '23567b218376f79d9415' // other valid API keys: '760b5fb497225856222a', '0e2a751704a65685eefc'
