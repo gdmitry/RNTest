@@ -2,31 +2,38 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DetailView from '../../screens/DetailView'
 import { fetchPictureDetails as fetchPictureDetailsAction } from './actions'
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 import { selectHiResImage } from './selectors'
 import { Share } from 'react-native'
+import { RootStackParamList } from '../../App';
+import { RootState } from '../../types/store';
 
-export interface Props {
-  navigation: any,
+export type Props = {
+  route: RouteProp<RootStackParamList, 'DetailView'>;
+  navigation: StackNavigationProp<RootStackParamList, 'DetailView'>;
 }
 
-function DetailViewContainer (props: Props) {
-  const hiResImage = useSelector(state => (imageId) => selectHiResImage(state, imageId))
-  const isLoading = useSelector(state => state.detailViewReducer.isLoading)
+function DetailViewContainer(props: Props) {
+  const hiResImage = useSelector((state: RootState) => (imageId: string) => selectHiResImage(state, imageId))
+  const isLoading = useSelector((state: RootState) => state.detailViewReducer.isLoading)
   const dispatch = useDispatch()
-  const fetchPictureDetails = imageId => dispatch(fetchPictureDetailsAction(imageId))
+  const fetchPictureDetails = (imageId: string) => dispatch(fetchPictureDetailsAction(imageId))
 
   const { route } = props
   const { pictureDetails } = route.params
-  const fullDetails = hiResImage(pictureDetails.id) || {}
+  const id = pictureDetails && pictureDetails.id;
+
+  const fullDetails = id ? hiResImage(id) : {};
   const imageURL = fullDetails.full_picture
 
   useEffect(() => {
-    if (!hiResImage(pictureDetails.id)) {
-      fetchPictureDetails(pictureDetails.id)
+    if (id && !hiResImage(id)) {
+      fetchPictureDetails(id)
     }
-  }, [])
+  }, [id])
 
-  const share = async (imageId: number): void => {
+  const share = async (imageId: string): Promise<void> => {
     const fullDetails = hiResImage(imageId)
     try {
       await Share.share({
@@ -37,7 +44,7 @@ function DetailViewContainer (props: Props) {
     }
   }
 
-  const applyFilter = (type): void => {
+  const applyFilter = (): void => {
     // TODO: implement apply image filter function
   }
 

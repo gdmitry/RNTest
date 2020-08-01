@@ -8,8 +8,10 @@ import {
 import {
   PinchGestureHandler,
   State,
+  PinchGestureHandlerStateChangeEvent,
 } from 'react-native-gesture-handler'
 
+import { HiResImage } from '../../types/api';
 import styles from './styles'
 import DetailsFooter from './components/DetailsFooter'
 
@@ -18,13 +20,14 @@ const USENATIVEDRIVER = true
 type Props = {
   imageUrl: string,
   isLoading: boolean,
-  shareCallback: Function,
-  applyFilterCallback: Function,
-  pictureDetails: Object,
+  shareCallback: (imageId: string) => Promise<void> | undefined,
+  applyFilterCallback: () => void,
+  pictureDetails: HiResImage,
 }
+
 let lastScale = 1
 
-function DetailView (props: Props) {
+function DetailView(props: Props) {
   const baseScale = new Animated.Value(1)
   const pinchScale = new Animated.Value(1)
   const scale = Animated.multiply(baseScale, pinchScale)
@@ -36,12 +39,12 @@ function DetailView (props: Props) {
     pictureDetails,
   } = props
 
-  onPinchGestureEvent = Animated.event(
-    [{ nativeEvent: { scale: this.pinchScale } }],
+  const onPinchGestureEvent = Animated.event(
+    [{ nativeEvent: { scale: pinchScale } }],
     { useNativeDriver: USENATIVEDRIVER }
   )
 
-  onPinchHandlerStateChange = (event) => {
+  const onPinchHandlerStateChange = (event: PinchGestureHandlerStateChangeEvent) => {
     if (event.nativeEvent.oldState === State.ACTIVE) {
       lastScale *= event.nativeEvent.scale
       baseScale.setValue(lastScale)
@@ -54,25 +57,25 @@ function DetailView (props: Props) {
       {isLoading ? (
         <ActivityIndicator size='large' style={styles.spinner} />
       ) : (
-        <PinchGestureHandler
-          onGestureEvent={this.onPinchGestureEvent}
-          onHandlerStateChange={this.onPinchHandlerStateChange}
-        >
-          <Animated.View style={styles.wrapper}>
-            <Animated.Image
-              style={[
-                styles.imageStyle,
-                {
-                  transform: [{ perspective: 200 }, { scale }],
-                },
-              ]}
-              source={{ uri: imageUrl }}
-              resizeMode='contain'
-            />
-          </Animated.View>
-        </PinchGestureHandler>
-      )}
-      { pictureDetails && <DetailsFooter
+                  <PinchGestureHandler
+            onGestureEvent={onPinchGestureEvent}
+            onHandlerStateChange={onPinchHandlerStateChange}
+          >
+            <Animated.View style={styles.wrapper}>
+              <Animated.Image
+                style={[
+                  styles.imageStyle,
+                  {
+                    transform: [{ perspective: 200 }, { scale }],
+                  },
+                ]}
+                source={{ uri: imageUrl }}
+                resizeMode='contain'
+              />
+            </Animated.View>
+          </PinchGestureHandler>
+        )}
+      {pictureDetails && <DetailsFooter
         pictureDetails={pictureDetails}
         shareCallback={shareCallback}
         applyFilterCallback={applyFilterCallback}

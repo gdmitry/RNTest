@@ -3,7 +3,7 @@ const { width } = Dimensions.get('window')
 
 const baseText = {
   color: '#fff',
-  fontWeight: 'bold',
+  fontWeight: 600,
 }
 
 const styles: any = StyleSheet.create({

@@ -12,12 +12,19 @@ import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
 import HomeView from './containers/HomeContainer'
 import DetailView from './containers/DetailViewContainer'
+import { Picture } from './types/api';
 
-const Stack = createStackNavigator()
+export type RootStackParamList = {
+  HomeView: undefined;
+  DetailView: { pictureDetails: Picture | undefined };
+};
+export const appStore = configureStore()
 
-export default function App () {
+const Stack = createStackNavigator<RootStackParamList>();
+
+export default function App() {
   return (
-    <Provider store={configureStore()}>
+    <Provider store={appStore}>
       <SafeAreaProvider>
         <NavigationContainer>
           <Stack.Navigator
