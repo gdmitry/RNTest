@@ -24,7 +24,7 @@ function HomeContainer(props: Props) {
 
   const onLoadNext = useCallback(() => {
     if (!isLoading) {
-      fetchPictures(page  1)
+      fetchPictures(page)
     }
   }, [isLoading, page]);
 

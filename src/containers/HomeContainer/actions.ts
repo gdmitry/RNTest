@@ -16,9 +16,9 @@ export function listIsLoading(): ActionWithoutPayload {
 }
 
 export function fetchListSuccess(
-  pictures: Picture[],
+  pictures: Array<Picture>,
   page: number
-): ActionWithPayload<PicturesResponse> {
+): ActionWithPayload<PicturesResponse & { page: number }> {
   return {
     type: ACTION_TYPES.PICTURES_FETCH_SUCCESS,
     payload: {

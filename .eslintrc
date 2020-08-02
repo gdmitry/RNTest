@@ -27,7 +27,7 @@
     }
   },
   "rules": {
-    "semi" : [2, "never"],
+    "semi" : [2, "always"],
     "max-len": [1, 120, 2],
     "yield-star-spacing": [2, "before"],
     "generator-star-spacing": 0,

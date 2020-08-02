@@ -1,8 +1,8 @@
 export type ActionWithPayload<T> = {
-  type: string,
-  payload: T,
-}
+  type: string;
+  payload: T;
+};
 
 export type ActionWithoutPayload = {
-  type: string,
-}
+  type: string;
+};
