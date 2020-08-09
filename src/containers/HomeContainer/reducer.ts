@@ -1,7 +1,7 @@
 import { ACTION_TYPES } from './actions';
 import { PicturesResponse, ErrorResponse } from '../../types/api';
 
-const initialState = {
+const initialState: PicturesResponse & { isLoading: boolean } & ErrorResponse= {
   pictures: [],
   isLoading: true,
   page: 1,
@@ -10,7 +10,7 @@ const initialState = {
 
 export type homePageState = typeof initialState;
 
-const homePageReducer = function (state: homePageState, action: any) {
+const homePageReducer = function (state: homePageState = initialState, action: any) {
   switch (action.type) {
     case ACTION_TYPES.PICTURES_FETCH_REQUESTED:
       return { ...state, isLoading: true };

@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "build",
-        "rootDir": "src",
+        "rootDir": ".",
         "sourceMap": true,
         "noImplicitAny": true,
         "noUnusedLocals": true,
@@ -11,16 +11,21 @@
         "jsx": "react",
         "strict": true,
         "typeRoots": [
-            "src/types"
+            "src/types",
+            "./node_modules/@types"
         ],
         "baseUrl": ".",
         "moduleResolution": "node",
         "esModuleInterop": true
     },
     "include": [
-        "./src/**/*"
+        "./src/**/*",
+        "./ReactotronConfig.js"
     ],
     "exclude": [
-        "./node_modules"
+        "node_modules",
+        "babel.config.js",
+        "metro.config.js",
+        "jest.config.js"
     ]
 }

@@ -1,7 +1,11 @@
-import { getPictures } from '../API'
+import API from "../API";
 
-test('the data should be an array of objects', async () => {
-  expect.assertions(1)
-  const data = await getPictures()
-  expect(typeof data).toBe('object1')
-})
+test("should return pictures list", async () => {
+  const mock = jest.fn();
+  mock.mockReturnValueOnce({ pictures: [{ id: 1, url: "" }] });
+  API.request = mock;
+  const data = await API.getPictures(1);
+
+  expect(data).toEqual([{ id: 1, url: "" }]);
+  expect(API.request).toBeCalled();
+});

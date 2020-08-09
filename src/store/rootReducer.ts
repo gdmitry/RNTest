@@ -1,8 +1,13 @@
 import { combineReducers } from 'redux'
-import homeReducer from '../containers/HomeContainer/reducer'
-import detailViewReducer from '../containers/DetailViewContainer/reducer'
+import homeReducer, { homePageState } from '../containers/HomeContainer/reducer'
+import detailViewReducer, { detailViewState } from '../containers/DetailViewContainer/reducer'
 
-export default combineReducers({
+export interface ApplicationState {
+  homeReducer: homePageState,
+  detailViewReducer: detailViewState,
+}
+
+export default combineReducers<ApplicationState>({
   homeReducer,
   detailViewReducer,
-})
+});

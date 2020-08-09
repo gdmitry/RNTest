@@ -1,5 +1,5 @@
-import { appStore } from '../App';
-import rootReducer from '../store/rootReducer';
+import { appStore } from "../App";
+import { ApplicationState } from "../store/rootReducer";
 
 export type AppDispatch = typeof appStore.dispatch;
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ApplicationState;

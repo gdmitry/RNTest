@@ -1,6 +1,5 @@
 import React from "react";
 import DetailView from "../index";
-// Note: test renderer must be required after react-native.
 import renderer from "react-test-renderer";
 
 const colorSwitchCallback = jest.fn();
@@ -20,5 +19,5 @@ it("renders correctly", () => {
       />
     )
     .toJSON();
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
 });

@@ -34,6 +34,7 @@
     "babel/generator-star-spacing": [2, "before"],
     "comma-dangle": [1, "always-multiline"],
     "no-var": 2,
+    "quotes": [2, "single"] ,
     "no-extra-semi": "error",
     "jsx-quotes": [1, "prefer-single"],
     "react/jsx-no-bind": [2, {

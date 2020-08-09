@@ -7,21 +7,18 @@ import {
 } from 'react-native'
 import styles from '../styles'
 import { HiResImage } from '../../../types/api';
- import imageFiltersImage from './images/ImageFilters.png'
- import shareImage from './images/ShareThis.png'
- 
- type Props = {
-   shareCallback: Function,
+import imageFiltersImage from './images/ImageFilters.png'
+import shareImage from './images/ShareThis.png'
+
+type Props = {
+  shareCallback: () => void,
   applyFilterCallback: () => void,
   pictureDetails: HiResImage,
- }
- 
- function DetailsFooter (props: Props) {
-   const { shareCallback, applyFilterCallback, pictureDetails } = props
-   const { id: imageId, author, camera } = pictureDetails
-   
-  const share = React.useCallback(() => shareCallback(imageId), [imageId]);
+}
 
+function DetailsFooter(props: Props) {
+  const { shareCallback, applyFilterCallback, pictureDetails } = props
+  const { author, camera } = pictureDetails
 
   return (
     <View style={styles.detailView}>
@@ -39,7 +36,7 @@ import { HiResImage } from '../../../types/api';
             source={imageFiltersImage} />
         </TouchableOpacity>
         <TouchableOpacity
-         onPress={share}>
+          onPress={shareCallback}>
           <Image style={styles.detailViewImage}
             resizeMode='cover'
             source={shareImage} />

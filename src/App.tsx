@@ -20,7 +20,7 @@ export const appStore = configureStore();
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-export default function App() {
+export default function App () {
   return (
     <Provider store={appStore}>
       <SafeAreaProvider>

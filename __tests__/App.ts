@@ -1,4 +1,5 @@
 import 'react-native'
+import 'jest';
 import * as React from 'react'
 import App from '../src/App'
 

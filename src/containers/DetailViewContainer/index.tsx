@@ -24,20 +24,24 @@ function DetailViewContainer(props: Props) {
   const { pictureDetails } = route.params
   const id = pictureDetails && pictureDetails.id;
 
-  const fullDetails = id ? hiResImage(id) : {};
-  const imageURL = fullDetails.full_picture
-
   useEffect(() => {
     if (id && !hiResImage(id)) {
       fetchPictureDetails(id)
     }
-  }, [id])
+  }, [id]);
 
-  const share = async (imageId: string): Promise<void> => {
-    const fullDetails = hiResImage(imageId)
+
+  const fullDetails = id ? hiResImage(id) : undefined;
+
+  if (!fullDetails) {
+    return null;
+  }
+  const imageURL = fullDetails.full_picture;
+
+  const share = async (): Promise<void> => {
     try {
       await Share.share({
-        message: fullDetails.full_picture,
+        message: imageURL,
       })
     } catch (error) {
       alert(error.message)

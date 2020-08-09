@@ -57,7 +57,7 @@ function DetailView(props: Props) {
       {isLoading ? (
         <ActivityIndicator size='large' style={styles.spinner} />
       ) : (
-                  <PinchGestureHandler
+          <PinchGestureHandler
             onGestureEvent={onPinchGestureEvent}
             onHandlerStateChange={onPinchHandlerStateChange}
           >

@@ -1,11 +1,11 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose, StoreEnhancer } from 'redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import Reactotron from '../../ReactotronConfig'
 import rootReducer from './rootReducer'
 
 export default function configureStore (): any {
-  const middlewares = [thunk]
+  const middlewares = [thunk];
   const enhancers = []
 
   if (__DEV__) {
@@ -18,5 +18,5 @@ export default function configureStore (): any {
     ...enhancers
   )
 
-  return createStore(rootReducer, enhancer)
+  return createStore(rootReducer, enhancer as StoreEnhancer)
 }
