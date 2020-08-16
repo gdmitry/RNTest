@@ -1,12 +1,12 @@
-import reducer from '../reducer'
+import reducer from "../reducer";
 
-describe('list reducer', () => {
-  it('should return the initial state', () => {
+describe("list reducer", () => {
+  it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual({
       pictures: [],
       isLoading: true,
       page: 1,
-      errorMessage: '',
-    })
-  })
-})
+      errorMessage: "",
+    });
+  });
+});

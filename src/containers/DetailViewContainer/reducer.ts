@@ -1,15 +1,21 @@
-import { ACTION_TYPES } from './actions';
-import { HiResImageResponse, ErrorResponse, HiResImage } from '../../types/api';
+import { ACTION_TYPES } from "./actions";
+import { HiResImageResponse, ErrorResponse, HiResImage } from "../../types/api";
 
-const initialState: { hiResPictures: HiResImage[], isLoading: boolean } & ErrorResponse= {
+const initialState: {
+  hiResPictures: HiResImage[];
+  isLoading: boolean;
+} & ErrorResponse = {
   hiResPictures: [],
   isLoading: false,
-  errorMessage: '',
+  errorMessage: "",
 };
 
 export type detailViewState = typeof initialState;
 
-const detailViewReducer = function (state: detailViewState = initialState, action: any) {
+const detailViewReducer = function (
+  state: detailViewState = initialState,
+  action: any
+) {
   switch (action.type) {
     case ACTION_TYPES.PICTURE_DETAILS_FETCH_REQUESTED:
       return { ...state, isLoading: true };

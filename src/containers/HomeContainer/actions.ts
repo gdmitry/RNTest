@@ -39,7 +39,7 @@ export function fetchListFailed(
   };
 }
 
-export function fetchPictures(page: number = 1) {
+export function fetchPictures(page = 1) {
   return async (dispatch: AppDispatch) => {
     dispatch(listIsLoading());
     try {

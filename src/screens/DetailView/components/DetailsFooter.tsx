@@ -1,24 +1,20 @@
-import * as React from 'react'
-import {
-  TouchableOpacity,
-  Image,
-  View,
-  Text,
-} from 'react-native'
-import styles from '../styles'
-import { HiResImage } from '../../../types/api';
-import imageFiltersImage from './images/ImageFilters.png'
-import shareImage from './images/ShareThis.png'
+import * as React from "react";
+import { TouchableOpacity, Image, View, Text } from "react-native";
+import styles from "../styles";
+import { HiResImage } from "../../../types/api";
+import { Callback } from "../../../types/utils";
+import imageFiltersImage from "./images/ImageFilters.png";
+import shareImage from "./images/ShareThis.png";
 
 type Props = {
-  shareCallback: () => void,
-  applyFilterCallback: () => void,
-  pictureDetails: HiResImage,
-}
+  shareCallback: Callback;
+  applyFilterCallback: Callback;
+  pictureDetails: HiResImage;
+};
 
 function DetailsFooter(props: Props) {
-  const { shareCallback, applyFilterCallback, pictureDetails } = props
-  const { author, camera } = pictureDetails
+  const { shareCallback, applyFilterCallback, pictureDetails } = props;
+  const { author, camera } = pictureDetails;
 
   return (
     <View style={styles.detailView}>
@@ -31,19 +27,22 @@ function DetailsFooter(props: Props) {
           style={{ marginRight: 10 }}
           onPress={applyFilterCallback}
         >
-          <Image style={styles.detailViewImage}
-            resizeMode='cover'
-            source={imageFiltersImage} />
+          <Image
+            style={styles.detailViewImage}
+            resizeMode="cover"
+            source={imageFiltersImage}
+          />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={shareCallback}>
-          <Image style={styles.detailViewImage}
-            resizeMode='cover'
-            source={shareImage} />
+        <TouchableOpacity onPress={shareCallback}>
+          <Image
+            style={styles.detailViewImage}
+            resizeMode="cover"
+            source={shareImage}
+          />
         </TouchableOpacity>
       </View>
     </View>
-  )
+  );
 }
 
-export default DetailsFooter
+export default DetailsFooter;

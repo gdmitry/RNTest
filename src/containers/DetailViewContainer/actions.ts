@@ -1,11 +1,11 @@
-import { getPictureDetails } from '../../services/API';
-import { AppDispatch } from '../../types/store';
-import { HiResImage } from '../../types/api';
+import { getPictureDetails } from "../../services/API";
+import { AppDispatch } from "../../types/store";
+import { HiResImage } from "../../types/api";
 
 export enum ACTION_TYPES {
-  PICTURE_DETAILS_FETCH_REQUESTED = 'PICTURE_DETAILS_FETCH_REQUESTED',
-  PICTURE_DETAILS_FETCH_SUCCESS = 'PICTURE_DETAILS_FETCH_SUCCESS',
-  FETCH_FAILED = 'FETCH_FAILED',
+  PICTURE_DETAILS_FETCH_REQUESTED = "PICTURE_DETAILS_FETCH_REQUESTED",
+  PICTURE_DETAILS_FETCH_SUCCESS = "PICTURE_DETAILS_FETCH_SUCCESS",
+  FETCH_FAILED = "FETCH_FAILED",
 }
 
 export const pictureIsLoading = () => ({

@@ -6,7 +6,7 @@ const API_ENDPOINT = "http://195.39.233.28:8035";
 
 let token = "";
 
-export async function getPictures(page: number = 1): Promise<Picture[]> {
+export async function getPictures(page = 1): Promise<Picture[]> {
   const data = (await service.request(
     `${API_ENDPOINT}/images?page=${page}`
   )) as PicturesResponse;
@@ -14,14 +14,16 @@ export async function getPictures(page: number = 1): Promise<Picture[]> {
 }
 
 export async function getPictureDetails(id: string): Promise<HiResImage> {
-  const data = (await service.request(`${API_ENDPOINT}/images/${id}`)) as HiResImage;
+  const data = (await service.request(
+    `${API_ENDPOINT}/images/${id}`
+  )) as HiResImage;
   return data;
 }
 
 export async function request(
   url: string,
-  options: Object = {}
-): Promise<Object> {
+  options = {}
+): Promise<{ token: string }> {
   if (!token) {
     token = await service.getToken();
   }
@@ -59,7 +61,7 @@ const service = {
   getPictures,
   getToken,
   getPictureDetails,
-  request
+  request,
 };
 
 export default service;
