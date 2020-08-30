@@ -16,3 +16,4 @@ https://enappd.com/blog/androidx-react-native/83/
 4. Clear cache: `npm start -- --reset-cache`
 5. Reinstall dependencies: `rm -rf node_modules && npm install`
 6. `adb reverse tcp:9090 tcp:9090`
+7. Open Menu on device `adb shell input keyevent 82`
