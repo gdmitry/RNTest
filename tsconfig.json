@@ -9,22 +9,21 @@
         "jsx": "react",
         "strict": true,
         "typeRoots": [
-            "./src/types"
+            "./src/types/*.ts"
         ],
         "moduleResolution": "node",
         "skipLibCheck": true,
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "isolatedModules": true
+        "esModuleInterop": true
     },
-    "files": [
-        "./index.tsx"
-    ],
     "exclude": [
+        "build",
+        "coverage",
         "node_modules",
         "babel.config.js",
         "metro.config.js",
-        "jest.config.js"
+        "jest.config.js",
+        "./**/__tests__/*"
     ]
 }

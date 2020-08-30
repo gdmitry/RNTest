@@ -20,7 +20,7 @@ function HomeContainer(props: Props) {
   );
 
   const dispatch = useDispatch();
-  const fetchPictures = (page: number) => dispatch(fetchPicturesAction(page));
+  const fetchPictures = (p: number) => dispatch(fetchPicturesAction(p));
 
   const onRefresh = useCallback(() => {
     fetchPictures(1);

@@ -11,8 +11,9 @@ Reactotron.configure({
   .useReactNative()
   .connect();
 
-//@ts-ignore
-Reactotron.clear();
+if (Reactotron.clear) {
+  Reactotron.clear();
+}
 
 console.tron = (...args: any) => {
   console.log(...args);
@@ -22,11 +23,5 @@ console.tron = (...args: any) => {
     preview: args.length > 1 ? JSON.stringify(args) : args[0],
   });
 };
-
-declare global {
-  interface Console {
-    tron: any;
-  }
-}
 
 export default Reactotron;

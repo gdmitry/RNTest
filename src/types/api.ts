@@ -21,7 +21,7 @@ export type HiResImage = {
 };
 
 export interface PicturesResponse {
-  pictures: Array<Picture>;
+  pictures: Picture[];
   page: number;
 }
 

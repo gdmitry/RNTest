@@ -24,7 +24,7 @@ export type Props = {
   isLoading: boolean;
   onLoadNext: () => void;
   onRefresh: () => void;
-  pictures: Array<Picture>;
+  pictures: Picture[];
   navigation: ProfileScreenNavigationProp;
 };
 

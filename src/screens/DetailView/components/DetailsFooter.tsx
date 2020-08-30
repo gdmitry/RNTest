@@ -30,14 +30,14 @@ function DetailsFooter(props: Props) {
           <Image
             style={styles.detailViewImage}
             resizeMode="cover"
-            source={imageFiltersImage}
+            source={{ uri: imageFiltersImage }}
           />
         </TouchableOpacity>
         <TouchableOpacity onPress={shareCallback}>
           <Image
             style={styles.detailViewImage}
             resizeMode="cover"
-            source={shareImage}
+            source={{ uri: shareImage }}
           />
         </TouchableOpacity>
       </View>

@@ -12,10 +12,7 @@ const initialState: PicturesResponse & {
 
 export type homePageState = typeof initialState;
 
-const homePageReducer = function (
-  state: homePageState = initialState,
-  action: any
-) {
+const homePageReducer = (state: homePageState = initialState, action: any) => {
   switch (action.type) {
     case ACTION_TYPES.PICTURES_FETCH_REQUESTED:
       return { ...state, isLoading: true };

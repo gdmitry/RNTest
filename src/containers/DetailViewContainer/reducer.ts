@@ -12,10 +12,10 @@ const initialState: {
 
 export type detailViewState = typeof initialState;
 
-const detailViewReducer = function (
+const detailViewReducer = (
   state: detailViewState = initialState,
   action: any
-) {
+) => {
   switch (action.type) {
     case ACTION_TYPES.PICTURE_DETAILS_FETCH_REQUESTED:
       return { ...state, isLoading: true };
