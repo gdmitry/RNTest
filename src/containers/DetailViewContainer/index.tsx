@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import DetailView from "../../screens/DetailView";
-import { fetchPictureDetails as fetchPictureDetailsAction } from "./actions";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RouteProp } from "@react-navigation/native";
-import { selectHiResImage } from "./selectors";
-import { Share } from "react-native";
-import { RootStackParamList } from "../../App";
-import { RootState } from "../../types/store";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import DetailView from '../../screens/DetailView';
+import { fetchPictureDetails as fetchPictureDetailsAction } from './actions';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+import { selectHiResImage } from './selectors';
+import { Share } from 'react-native';
+import { RootStackParamList } from '../../App';
+import { RootState } from '../../types/store';
 
 export type Props = {
-  route: RouteProp<RootStackParamList, "DetailView">;
-  navigation: StackNavigationProp<RootStackParamList, "DetailView">;
+  route: RouteProp<RootStackParamList, 'DetailView'>;
+  navigation: StackNavigationProp<RootStackParamList, 'DetailView'>;
 };
 
 function DetailViewContainer(props: Props) {
@@ -55,8 +55,6 @@ function DetailViewContainer(props: Props) {
   const applyFilter = (): void => {
     // TODO: implement apply image filter function
   };
-
-  console.tron(props);
 
   return (
     <DetailView

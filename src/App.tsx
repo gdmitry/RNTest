@@ -1,21 +1,21 @@
-import "react-native-gesture-handler";
-import * as React from "react";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { Provider } from "react-redux";
-import configureStore from "./store/configureStore";
-import HomeView from "./containers/HomeContainer";
-import DetailView from "./containers/DetailViewContainer";
-import { nameof } from "./types/utils";
-import { Picture } from "./types/api";
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
+import HomeView from './containers/HomeContainer';
+import DetailView from './containers/DetailViewContainer';
+import { nameof } from './types/utils';
+import { Picture } from './types/api';
 
 export type RootStackParamList = {
   HomeView: undefined;
   DetailView: { pictureDetails: Picture | undefined };
 };
-export const HomeViewKey = nameof<RootStackParamList>("HomeView");
-export const DetailViewKey = nameof<RootStackParamList>("DetailView");
+export const HomeViewKey = nameof<RootStackParamList>('HomeView');
+export const DetailViewKey = nameof<RootStackParamList>('DetailView');
 export const appStore = configureStore();
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -29,7 +29,7 @@ export default function App() {
             initialRouteName={HomeViewKey}
             headerMode="screen"
             screenOptions={{
-              headerTintColor: "#FFF",
+              headerTintColor: '#FFF',
             }}
           >
             <Stack.Screen
@@ -48,7 +48,7 @@ export default function App() {
                   height: 50,
                   borderBottomWidth: 0,
                 },
-                headerTintColor: "#FFF",
+                headerTintColor: '#FFF',
               }}
             />
           </Stack.Navigator>

@@ -1,15 +1,15 @@
-import * as React from "react";
-import { View, ActivityIndicator, Animated } from "react-native";
+import * as React from 'react';
+import { View, ActivityIndicator, Animated } from 'react-native';
 
 import {
   PinchGestureHandler,
   State,
   PinchGestureHandlerStateChangeEvent,
-} from "react-native-gesture-handler";
+} from 'react-native-gesture-handler';
 
-import { HiResImage } from "../../types/api";
-import styles from "./styles";
-import DetailsFooter from "./components/DetailsFooter";
+import { HiResImage } from '../../types/api';
+import styles from './styles';
+import DetailsFooter from './components/DetailsFooter';
 
 const USENATIVEDRIVER = true;
 

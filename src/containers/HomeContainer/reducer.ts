@@ -1,41 +1,45 @@
-import { ACTION_TYPES } from "./actions";
-import { PicturesResponse, ErrorResponse } from "../../types/api";
+import { createReducer } from 'redux-act';
+import {
+  fetchListRequested,
+  fetchListSuccess,
+  fetchListFailed,
+} from './actions';
+import { Picture } from '../../types/api';
 
-const initialState: PicturesResponse & {
-  isLoading: boolean;
-} & ErrorResponse = {
-  pictures: [],
+const initialState = {
+  pictures: [] as Picture[],
   isLoading: true,
   page: 1,
-  errorMessage: "",
+  errorMessage: '',
 };
 
 export type homePageState = typeof initialState;
 
-const homePageReducer = (state: homePageState = initialState, action: any) => {
-  switch (action.type) {
-    case ACTION_TYPES.PICTURES_FETCH_REQUESTED:
-      return { ...state, isLoading: true };
-    case ACTION_TYPES.PICTURES_FETCH_SUCCESS: {
-      const payload = action.payload as PicturesResponse;
-      return {
-        ...state,
-        ...payload,
-        pictures:
-          payload.page === 1
-            ? payload.pictures
-            : [...state.pictures, ...payload.pictures],
-        isLoading: false,
-      };
-    }
-    case ACTION_TYPES.FETCH_FAILED: {
-      const payload = action.payload as ErrorResponse;
+const homePageReducer = createReducer({}, initialState);
 
-      return { ...state, errorMessage: payload.errorMessage, isLoading: false };
-    }
-    default:
-      return state;
-  }
-};
+homePageReducer.on(fetchListRequested, (state) => {
+  return {
+    ...state,
+    isLoading: true,
+  };
+});
+
+homePageReducer.on(fetchListSuccess, (state, payload) => {
+  const { page, pictures } = payload;
+  return {
+    ...state,
+    pictures: [...state.pictures, ...pictures],
+    isLoading: false,
+    page: page + 1,
+  };
+});
+
+homePageReducer.on(fetchListFailed, (state, payload) => {
+  return {
+    ...state,
+    ...payload,
+    isLoading: false,
+  };
+});
 
 export default homePageReducer;

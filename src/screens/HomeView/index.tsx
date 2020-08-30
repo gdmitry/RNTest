@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import {
   FlatList,
   Dimensions,
@@ -6,12 +6,12 @@ import {
   View,
   ImageStyle,
   StyleProp,
-} from "react-native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { Picture } from "../../types/api";
-import ListItem from "./components/ListItem";
-import { RootStackParamList, HomeViewKey, DetailViewKey } from "../../App";
-import styles from "./styles";
+} from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Picture } from '../../types/api';
+import ListItem from './components/ListItem';
+import { RootStackParamList, HomeViewKey, DetailViewKey } from '../../App';
+import styles from './styles';
 
 const keyExtractor = (item: Picture, page: number) => item.id.toString() + page;
 
@@ -41,7 +41,7 @@ function HomeView(props: Props) {
   } = props;
 
   const prepareStyles = (): void => {
-    const { height, width } = Dimensions.get("window");
+    const { height, width } = Dimensions.get('window');
     const realWidth = height > width ? width : height;
     const portraitImageSize = realWidth / 2 - 10;
     imageThumbnailStylePortrait = StyleSheet.flatten({

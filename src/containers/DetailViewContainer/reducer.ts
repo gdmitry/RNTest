@@ -1,39 +1,43 @@
-import { ACTION_TYPES } from "./actions";
-import { HiResImageResponse, ErrorResponse, HiResImage } from "../../types/api";
+import { createReducer } from 'redux-act';
+import {
+  fetchPictureFailed,
+  fetchPictureSuccess,
+  pictureIsLoading,
+} from './actions';
+import { HiResImage } from '../../types/api';
 
-const initialState: {
-  hiResPictures: HiResImage[];
-  isLoading: boolean;
-} & ErrorResponse = {
-  hiResPictures: [],
+const initialState = {
+  hiResPictures: [] as HiResImage[],
   isLoading: false,
-  errorMessage: "",
+  errorMessage: '',
 };
 
 export type detailViewState = typeof initialState;
 
-const detailViewReducer = (
-  state: detailViewState = initialState,
-  action: any
-) => {
-  switch (action.type) {
-    case ACTION_TYPES.PICTURE_DETAILS_FETCH_REQUESTED:
-      return { ...state, isLoading: true };
-    case ACTION_TYPES.PICTURE_DETAILS_FETCH_SUCCESS: {
-      const payload = action.payload as HiResImageResponse;
-      return {
-        ...state,
-        hiResPictures: [...state.hiResPictures, payload.hiResImage],
-        isLoading: false,
-      };
-    }
-    case ACTION_TYPES.FETCH_FAILED: {
-      const payload = action.payload as ErrorResponse;
-      return { ...state, errorMessage: payload.errorMessage, isLoading: false };
-    }
-    default:
-      return state;
-  }
-};
+const detailViewReducer = createReducer({}, initialState);
+
+detailViewReducer.on(pictureIsLoading, (state) => {
+  return {
+    ...state,
+    isLoading: true,
+  };
+});
+
+detailViewReducer.on(fetchPictureSuccess, (state, payload) => {
+  const { hiResImage } = payload;
+  return {
+    ...state,
+    hiResPictures: [...state.hiResPictures, hiResImage],
+    isLoading: false,
+  };
+});
+
+detailViewReducer.on(fetchPictureFailed, (state, payload) => {
+  return {
+    ...state,
+    ...payload,
+    isLoading: false,
+  };
+});
 
 export default detailViewReducer;

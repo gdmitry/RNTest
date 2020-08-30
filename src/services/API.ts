@@ -1,10 +1,10 @@
-import fetch from "node-fetch";
-import { HiResImage, Picture, PicturesResponse } from "../types/api";
+import fetch from 'node-fetch';
+import { HiResImage, Picture, PicturesResponse } from '../types/api';
 
-const API_KEY = "23567b218376f79d9415"; // other valid API keys: '760b5fb497225856222a', '0e2a751704a65685eefc'
-const API_ENDPOINT = "http://195.39.233.28:8035";
+const API_KEY = '23567b218376f79d9415'; // other valid API keys: '760b5fb497225856222a', '0e2a751704a65685eefc'
+const API_ENDPOINT = 'http://195.39.233.28:8035';
 
-let token = "";
+let token = '';
 
 export async function getPictures(page = 1): Promise<Picture[]> {
   const data = (await service.request(
@@ -31,15 +31,15 @@ export async function request(
   const params = {
     ...options,
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
   };
   const result = await fetch(url, params);
   const body = await result.json();
 
-  if (body.status === "Unauthorized") {
-    token = "";
+  if (body.status === 'Unauthorized') {
+    token = '';
     return request(url, params);
   }
 
@@ -48,8 +48,8 @@ export async function request(
 
 export async function getToken(): Promise<string> {
   const result = await fetch(`${API_ENDPOINT}/auth`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ apiKey: API_KEY }),
   });
   const body = await result.json();

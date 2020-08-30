@@ -5,7 +5,8 @@
   "rules": {
     "no-console": {
       "severity": "warning"
-    }
+    },
+    "quotemark": [true, "single", "jsx-double"]
   },
   "rulesDirectory": []
 }

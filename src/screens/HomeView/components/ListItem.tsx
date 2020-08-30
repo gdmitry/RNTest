@@ -1,6 +1,6 @@
-import React, { useCallback } from "react";
-import { TouchableOpacity, Image, ImageStyle, StyleProp } from "react-native";
-import styles from "../styles";
+import React, { useCallback } from 'react';
+import { TouchableOpacity, Image, ImageStyle, StyleProp } from 'react-native';
+import styles from '../styles';
 
 export type Props = {
   imageUrl: string;

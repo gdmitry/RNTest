@@ -1,17 +1,17 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles: any = StyleSheet.create({
   page: {
     flex: 1,
-    alignItems: "stretch",
-    backgroundColor: "black",
+    alignItems: 'stretch',
+    backgroundColor: 'black',
   },
   errorContainer: {
     padding: 30,
-    alignItems: "center",
+    alignItems: 'center',
   },
   errorText: {
-    textAlign: "center",
+    textAlign: 'center',
   },
   item: {
     paddingLeft: 5,
@@ -20,7 +20,7 @@ const styles: any = StyleSheet.create({
     paddingBottom: 5,
   },
   loader: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,

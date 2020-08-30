@@ -1,10 +1,10 @@
-import React, { useEffect, useCallback } from "react";
-import { Platform, StatusBar } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import HomeView from "../../screens/HomeView";
-import { fetchPictures as fetchPicturesAction } from "./actions";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { RootState } from "../../types/store";
+import React, { useEffect, useCallback } from 'react';
+import { Platform, StatusBar } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import HomeView from '../../screens/HomeView';
+import { fetchPictures as fetchPicturesAction } from './actions';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { RootState } from '../../types/store';
 
 export interface Props {
   navigation: any;
@@ -33,10 +33,10 @@ function HomeContainer(props: Props) {
   }, [isLoading, page]);
 
   useEffect(() => {
-    if (Platform.OS === "android") {
-      StatusBar.setBackgroundColor("#000");
+    if (Platform.OS === 'android') {
+      StatusBar.setBackgroundColor('#000');
     } else {
-      StatusBar.setBarStyle("light-content");
+      StatusBar.setBarStyle('light-content');
     }
     onRefresh();
   }, []);

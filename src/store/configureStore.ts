@@ -4,11 +4,11 @@ import {
   compose,
   StoreEnhancer,
   Middleware,
-} from "redux";
-import thunk from "redux-thunk";
-import { createLogger } from "redux-logger";
-import Reactotron from "../ReactotronConfig";
-import rootReducer from "./rootReducer";
+} from 'redux';
+import thunk from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import Reactotron from '../ReactotronConfig';
+import rootReducer from './rootReducer';
 
 export default function configureStore(): any {
   const middlewares: Middleware[] = [thunk];

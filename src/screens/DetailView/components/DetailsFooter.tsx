@@ -1,10 +1,13 @@
-import * as React from "react";
-import { TouchableOpacity, Image, View, Text } from "react-native";
-import styles from "../styles";
-import { HiResImage } from "../../../types/api";
-import { Callback } from "../../../types/utils";
-import imageFiltersImage from "./images/ImageFilters.png";
-import shareImage from "./images/ShareThis.png";
+import * as React from 'react';
+import { TouchableOpacity, Image, View, Text } from 'react-native';
+import styles from '../styles';
+import { HiResImage } from '../../../types/api';
+import { Callback } from '../../../types/utils';
+// TODO: Solve image import ts error!
+// @ts-ignore
+import imageFiltersImage from './images/ImageFilters.png';
+// @ts-ignore
+import shareImage from './images/ShareThis.png';
 
 type Props = {
   shareCallback: Callback;
@@ -30,14 +33,16 @@ function DetailsFooter(props: Props) {
           <Image
             style={styles.detailViewImage}
             resizeMode="cover"
-            source={{ uri: imageFiltersImage }}
+            // @ts-ignore
+            source={imageFiltersImage}
           />
         </TouchableOpacity>
         <TouchableOpacity onPress={shareCallback}>
           <Image
             style={styles.detailViewImage}
             resizeMode="cover"
-            source={{ uri: shareImage }}
+            // @ts-ignore
+            source={shareImage}
           />
         </TouchableOpacity>
       </View>
