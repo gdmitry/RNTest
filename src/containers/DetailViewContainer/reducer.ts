@@ -1,9 +1,5 @@
 import { createReducer } from 'redux-act';
-import {
-  fetchPictureFailed,
-  fetchPictureSuccess,
-  pictureIsLoading,
-} from './actions';
+import { PictureDetailsActions } from './actions';
 import { HiResImage } from '../../types/api';
 
 const initialState = {
@@ -16,14 +12,14 @@ export type detailViewState = typeof initialState;
 
 const detailViewReducer = createReducer({}, initialState);
 
-detailViewReducer.on(pictureIsLoading, (state) => {
+detailViewReducer.on(PictureDetailsActions.request, (state) => {
   return {
     ...state,
     isLoading: true,
   };
 });
 
-detailViewReducer.on(fetchPictureSuccess, (state, payload) => {
+detailViewReducer.on(PictureDetailsActions.success, (state, payload) => {
   const { hiResImage } = payload;
   return {
     ...state,
@@ -32,7 +28,7 @@ detailViewReducer.on(fetchPictureSuccess, (state, payload) => {
   };
 });
 
-detailViewReducer.on(fetchPictureFailed, (state, payload) => {
+detailViewReducer.on(PictureDetailsActions.error, (state, payload) => {
   return {
     ...state,
     ...payload,

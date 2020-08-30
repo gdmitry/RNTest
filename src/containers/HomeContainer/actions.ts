@@ -1,26 +1,17 @@
-import { createAction } from 'redux-act';
 import { getPictures } from '../../services/API';
-import { PicturesResponse, ErrorResponse } from '../../types/api';
-import { AppDispatch } from '../../types/store';
+import { PicturesResponse, Picture } from '../../types/api';
+import { createAsyncAction, dispatchAsyncAction } from '../../utils';
 
-enum ACTION_TYPES {
-  PICTURES_FETCH_REQUESTED = 'PICTURES_FETCH_REQUESTED',
-  PICTURES_FETCH_SUCCESS = 'PICTURES_FETCH_SUCCESS',
-  PICTURES_FETCH_FAILED = 'PICTURES_FETCH_FAILED',
-}
+export const PicturesActions = createAsyncAction<PicturesResponse>(
+  'PICTURES__FETCH'
+);
 
-export const fetchListRequested = createAction(ACTION_TYPES.PICTURES_FETCH_REQUESTED);
-export const fetchListSuccess = createAction<PicturesResponse>(ACTION_TYPES.PICTURES_FETCH_SUCCESS);
-export const fetchListFailed = createAction<ErrorResponse>(ACTION_TYPES.PICTURES_FETCH_FAILED);
-
-export function fetchPictures(page: number) {
-  return async (dispatch: AppDispatch) => {
-    dispatch(fetchListRequested());
-    try {
-      const pictures = await getPictures(page);
-      dispatch(fetchListSuccess({ pictures, page }));
-    } catch (e) {
-      dispatch(fetchListFailed(e));
-    }
-  };
-}
+export const fetchPictures = (page: number) =>
+  dispatchAsyncAction<Picture[], PicturesResponse>(
+    PicturesActions,
+    () => getPictures(page),
+    (data) => ({
+      pictures: data,
+      page,
+    })
+  );

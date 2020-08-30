@@ -1,9 +1,5 @@
 import { createReducer } from 'redux-act';
-import {
-  fetchListRequested,
-  fetchListSuccess,
-  fetchListFailed,
-} from './actions';
+import { PicturesActions } from './actions';
 import { Picture } from '../../types/api';
 
 const initialState = {
@@ -17,14 +13,14 @@ export type homePageState = typeof initialState;
 
 const homePageReducer = createReducer({}, initialState);
 
-homePageReducer.on(fetchListRequested, (state) => {
+homePageReducer.on(PicturesActions.request, (state) => {
   return {
     ...state,
     isLoading: true,
   };
 });
 
-homePageReducer.on(fetchListSuccess, (state, payload) => {
+homePageReducer.on(PicturesActions.success, (state, payload) => {
   const { page, pictures } = payload;
   return {
     ...state,
@@ -34,7 +30,7 @@ homePageReducer.on(fetchListSuccess, (state, payload) => {
   };
 });
 
-homePageReducer.on(fetchListFailed, (state, payload) => {
+homePageReducer.on(PicturesActions.error, (state, payload) => {
   return {
     ...state,
     ...payload,

@@ -15,6 +15,7 @@ if (Reactotron.clear) {
   Reactotron.clear();
 }
 
+// @ts-ignore
 console.tron = (...args: any) => {
   console.log(...args);
   Reactotron.display({
