@@ -1,26 +1,25 @@
 {
     "compilerOptions": {
-        "outDir": "build",
-        "rootDir": ".",
+        "outDir": "./build",
         "sourceMap": true,
         "noImplicitAny": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "module": "commonjs",
-        "target": "es6",
+        "target": "esnext",
         "jsx": "react",
         "strict": true,
         "typeRoots": [
-            "src/types",
-            "./node_modules/@types"
+            "./src/types"
         ],
-        "baseUrl": ".",
         "moduleResolution": "node",
-        "esModuleInterop": true
+        "skipLibCheck": true,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "isolatedModules": true
     },
-    "include": [
-        "./src/**/*",
-        "./ReactotronConfig.js"
+    "files": [
+        "./index.tsx"
     ],
     "exclude": [
         "node_modules",

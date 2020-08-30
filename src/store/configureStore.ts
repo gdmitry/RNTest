@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose, StoreEnhancer } from "redux";
 import thunk from "redux-thunk";
 import { createLogger } from "redux-logger";
-import Reactotron from "../../ReactotronConfig";
+import Reactotron from "../ReactotronConfig";
 import rootReducer from "./rootReducer";
 
 export default function configureStore(): any {

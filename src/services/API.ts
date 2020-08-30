@@ -23,7 +23,7 @@ export async function getPictureDetails(id: string): Promise<HiResImage> {
 export async function request(
   url: string,
   options = {}
-): Promise<{ token: string }> {
+): Promise<{}> {
   if (!token) {
     token = await service.getToken();
   }
