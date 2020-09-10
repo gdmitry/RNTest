@@ -21,5 +21,5 @@ https://enappd.com/blog/androidx-react-native/83/
 
 ## Enable hot reloading
 1. adb devices
-2. adb -s <device name> reverse tcp:8081 tcp:8081
+2. adb -s `<device name>` reverse tcp:8081 tcp:8081
 3. adb shell input keyevent 82
