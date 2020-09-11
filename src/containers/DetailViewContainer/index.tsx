@@ -27,7 +27,7 @@ function DetailViewContainer(props: Props) {
 
   const { route } = props;
   const { pictureDetails } = route.params;
-  const id = pictureDetails && pictureDetails.id;
+  const id = pictureDetails?.id;
 
   useEffect(() => {
     if (id && !hiResImage(id)) {
