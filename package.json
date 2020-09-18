@@ -22,7 +22,7 @@
     "@types/mocha": "^8.0.1",
     "@types/react-test-renderer": "^16.9.2",
     "babel-core": "^6.26.3",
-    "node-fetch": "^2.0.0",
+    "node-fetch": "^2.6.1",
     "react": "16.8.6",
     "react-dom": "^16.13.1",
     "react-native": "0.59.9",
