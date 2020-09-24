@@ -26,3 +26,10 @@ https://enappd.com/blog/androidx-react-native/83/
 
 ## React Native - pod install issue “cannot load such file…node_modules/react-native/scripts/react_native_pods”
 Fix: npm audit fix and it added react_native_pods file and pod install then worked
+
+## Unable to resolve module `@babel/runtime/helpers/interopRequireDefault`
+Fix: 
+1. Clear watchman watches: watchman watch-del-all
+2. Delete node_modules: rm -rf node_modules and run yarn install
+3. Reset Metro's cache: yarn start --reset-cache
+4. Remove the cache: rm -rf /tmp/metro-*
