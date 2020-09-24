@@ -23,3 +23,6 @@ https://enappd.com/blog/androidx-react-native/83/
 1. adb devices
 2. adb -s `<device name>` reverse tcp:8081 tcp:8081
 3. adb shell input keyevent 82
+
+## React Native - pod install issue “cannot load such file…node_modules/react-native/scripts/react_native_pods”
+Fix: npm audit fix and it added react_native_pods file and pod install then worked
