@@ -33,3 +33,9 @@ Fix:
 2. Delete node_modules: rm -rf node_modules and run yarn install
 3. Reset Metro's cache: yarn start --reset-cache
 4. Remove the cache: rm -rf /tmp/metro-*
+
+## unfortunately app has stopped react native
+Had the same issue, in my case it was RN cache.
+Fixed it by
+`cd android`
+`./gradlew clean`
